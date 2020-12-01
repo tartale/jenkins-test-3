@@ -8,11 +8,21 @@ pipeline {
 
    stages {
 
-     stage('Say What?') {
+     stage('Integration tests') {
+         when {
+           expression { return params.RUN_INT_TESTS_STAGE }
+         }
          steps {
-           echo "What's going on ${params.YOURNAME}?"
+           echo "Running integration tests"
+         }
+     }
+     stage('Openshift tests') {
+         when {
+           expression { return params.RUN_OPENSHIFT_TESTS_STAGE }
+         }
+         steps {
+           echo "Running openshift tests"
          }
      }
    }
 }
-
