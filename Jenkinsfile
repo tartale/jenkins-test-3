@@ -8,9 +8,9 @@ pipeline {
 
    stages {
 
-     stage('Say Goodbye') {
+     stage('Say What?') {
          steps {
-           echo "Goodbye ${env.YOURNAME}.  Everything sucks!"
+           echo "What's going on ${params.YOURNAME}?"
          }
      }
    }
