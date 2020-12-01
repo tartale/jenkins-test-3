@@ -5,6 +5,14 @@ pipeline {
        disableConcurrentBuilds()
        timeout(time: 2, unit: 'HOURS')
    }
+   
+   parameters {
+     string(
+       name: 'STATEMENT', 
+       defaultValue: 'Everything is awesome!',
+       description: 'Something to say'
+     )
+   }
 
    stages {
 
@@ -13,7 +21,7 @@ pipeline {
            expression { return params.RUN_INT_TESTS_STAGE }
          }
          steps {
-           echo "Running integration tests"
+            echo "Running integration tests.  ${params.STATEMENT}"
          }
      }
      stage('Openshift tests') {
@@ -21,7 +29,7 @@ pipeline {
            expression { return params.RUN_OPENSHIFT_TESTS_STAGE }
          }
          steps {
-           echo "Running openshift tests"
+           echo "Running openshift tests  ${params.STATEMENT}"
          }
      }
    }
